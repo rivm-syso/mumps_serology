@@ -25,7 +25,7 @@ plot_points <- mumps_data_all |>
   mutate(infected = (Post - Pre >= 2 & Post > log(300, base = 2)),
          toberemoved = Pre - Post >= 2) |> 
   ggplot(aes(x = Pre, y = Post, col = infected, alpha = toberemoved)) +
-  geom_abline(slope = 1, intercept =-2:2, col = rgb(0.5, 0.5, 0.5)) +
+  geom_abline(slope = 1, intercept =-2:2, col = rgb(0.5, 0.5, 0.5), linetype = c("dotted", "dashed", "solid", "dashed", "dotted")) +
   geom_point() +
   coord_equal() +
   scale_x_continuous(limits = c(3, 15),

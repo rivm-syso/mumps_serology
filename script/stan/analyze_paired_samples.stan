@@ -60,8 +60,8 @@ model {
   //Sigma_Random ~ normal(0, 1);                     // random noise for individual titers
   //Mu_Inf ~ normal(10, 0.5);                        // mu of infected persons
   //Sigma_Inf ~ normal(0, 2);                        // sigma of infected persons
-  ProbInf1 ~ beta(1,9); //1.1, 1.1);                 // prior on p(infection) when no increase is observed; anything goes
-  ProbInf4 ~ beta(9,1); //1.1, 1.1);                 // prior on p(infection) when fourfold increase is observed; anything goes
+  ProbInf1 ~ beta(1,29); //1.1, 1.1);                // prior on p(infection) when no increase is observed; anything goes
+  ProbInf4 ~ beta(29,1); //1.1, 1.1);                // prior on p(infection) when fourfold increase is observed; anything goes
 
   /* likelihood contributions */
   target += watanabe_beta * normal_lpdf(Titer_Pre | Ind_Titer_Level, Sigma_Random); 
@@ -74,6 +74,7 @@ model {
 generated quantities {
   vector[2*N] log_lik;                               // log-likelihood contributions
   vector[N] prob_inf_pred;                           // predicted probabilities of infection
+  real<lower = 0, upper = 1> prob_inf_pred_overall;  // overall probability of infection (=prevalence)
   real<lower = 0, upper = 1> ProbInf2;               // probability of infection at twofold titer increase 
   real intraclass_corr;                              // intraclass correlation
   
@@ -84,10 +85,12 @@ generated quantities {
     log_lik[N+i] = log((1-pjump[i])*exp(normal_lpdf(Titer_Post[i] | Ind_Titer_Level[i], Sigma_Random)) + pjump[i] * exp(normal_lpdf(Titer_Post[i] | Mu_Inf, Sigma_Inf)));
     prob_inf_pred[i] = (pjump[i] * exp(normal_lpdf(Titer_Post[i] | Mu_Inf, Sigma_Inf))) / ((pjump[i] * exp(normal_lpdf(Titer_Post[i] | Mu_Inf, Sigma_Inf))) + ((1 - pjump[i]) * exp(normal_lpdf(Titer_Post[i] | Ind_Titer_Level[i], Sigma_Uninf))));
   }
+  prob_inf_pred_overall = sum(prob_inf_pred)/N;
   
   /* calculation of probability of infection at twofold titer increase */
   ProbInf2 =  1 / (1 + exp(-kpar * (1.0 - x0)));
-  
+
   /* intraclass correlation */
   intraclass_corr = Sigma_Uninf^2 / (Sigma_Uninf^2 + Sigma_Random^2);      
 } 
+

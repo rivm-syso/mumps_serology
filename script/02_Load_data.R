@@ -17,31 +17,28 @@
 # 
 ################################################################################
 
-library(tidyverse)
-library(lubridate)
-
 raw_data_filename <- "./data/bof_cutoff_20180921_2.csv"
 data_filename <- "./data/mumps_serology_data.csv"
 
 if(file.exists(raw_data_filename) & !file.exists(data_filename)) {
   
   # import data
-  mumps_data_all <- read_csv(raw_data_filename)
+  mumps_data <- read_csv(raw_data_filename)
   
   # select variables and transform data for analysis
-  mumps_data_all <- mumps_data_all |> 
+  mumps_data <- mumps_data |> 
     transmute(ID = ID,
               Pre = log(IgG_JL_pre, base = 2),
               Post = log(IgG_JL_post, base = 2)
     )
   
-  mumps_data_all |> write_csv(file = data_filename)
+  mumps_data |> write_csv(file = data_filename)
   
   message("Raw data loaded, cleaned and stored")
   
 } else if(file.exists(data_filename)) {
   
-  mumps_data_all <- read_csv(data_filename)
+  mumps_data <- read_csv(data_filename)
   message("Data loaded")
   
 } else {

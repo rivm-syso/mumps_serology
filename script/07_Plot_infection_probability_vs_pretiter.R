@@ -27,7 +27,6 @@ if(!exists("fit") & file.exists("results/fit.rds")) {
 # Extract parameters from stan fit
 params <- rstan::extract(fit, pars = c("prob_inf_pred", "Mu_Inf", "Sigma_Inf", "Mu_Uninf", "Sigma_Uninf", "ProbInf4", "ProbInf1"))
 
-
 data_probinf <- mumps_data %>% 
   mutate(pinf_med = apply(params$prob_inf_pred, MARGIN = 2, quantile, probs = 0.5),
          pinf_low = apply(params$prob_inf_pred, MARGIN = 2, quantile, probs = 0.025),

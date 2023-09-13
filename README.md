@@ -1,6 +1,6 @@
 # Mumps serology
 
-This repository contains the data and code used for the analysis of paired mumps serology samples, as described in ["Estimation of the infection attack rate of mumps in an outbreak among college students using paired serology"](https://placeholder), by [Michiel van Boven](mailto:michiel.van.boven@rivm.nl), Jantien A. Backer, Irene Veldhuijzen, Justin Gomme, Rob van Binnendijk, and Patricia Kaaijk, consisting of:
+This repository contains the data and code used for the analysis of paired mumps serology samples, as described in ["Estimation of the infection attack rate of mumps in an outbreak among college students using paired serology"](https://www.medrxiv.org/content/10.1101/2023.09.12.23295419v1), by [Michiel van Boven](mailto:michiel.van.boven@rivm.nl), Jantien A. Backer, Irene Veldhuijzen, Justin Gomme, Rob van Binnendijk, and Patricia Kaaijk, consisting of:
 
 * `script`: code for analysis and figures
 

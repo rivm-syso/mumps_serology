@@ -26,6 +26,7 @@ library(rstan)
 library(loo)
 library(cowplot)
 library(ggExtra)
+library(ggbeeswarm)
 rstan_options(auto_write = TRUE)
 options(mc.cores = 10)
 

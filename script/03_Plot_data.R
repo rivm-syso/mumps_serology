@@ -26,6 +26,7 @@ plot_points <- mumps_data_all |>
          toberemoved = Pre - Post >= 2) |> 
   ggplot(aes(x = Pre, y = Post, col = infected, alpha = toberemoved)) +
   geom_abline(slope = 1, intercept =-2:2, col = rgb(0.5, 0.5, 0.5), linetype = c("dotted", "dashed", "solid", "dashed", "dotted")) +
+  geom_abline(slope = 0, intercept =8.22, col = rgb(0.5, 0.5, 0.5), linetype = c("dotdash")) +
   geom_point() +
   coord_equal() +
   scale_x_continuous(limits = c(3, 15),
@@ -45,6 +46,8 @@ p <- ggMarginal(plot_points,
            type="histogram",
            col = adjustcolor(rgb(0.5, 0.5, 0.5), 0.2),
            fill = adjustcolor(rgb(0.5, 0.5, 0.5), 0.5))
+
+p
 
 ggsave(p, filename = "./figures/Fig_data.png", dpi = 300, height = 4.5, width = 7, bg = "white")
 

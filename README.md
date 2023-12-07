@@ -52,7 +52,8 @@ Next to the R base packages, the following packages(_versions) were used
  readr_2.1.4    
  tidyr_1.3.0     
  tibble_3.2.1    
- ggplot2_3.4.3   
+ ggplot2_3.4.3
+ ggbeeswarm_0.7.2
  tidyverse_2.0.0
 ```
 

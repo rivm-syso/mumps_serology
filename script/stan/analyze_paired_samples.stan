@@ -60,8 +60,8 @@ model {
   //Sigma_Random ~ normal(0, 1);                     // random noise for individual titers
   //Mu_Inf ~ normal(10, 0.5);                        // mu of infected persons
   //Sigma_Inf ~ normal(0, 2);                        // sigma of infected persons
-  ProbInf1 ~ beta(1,29); //1.1, 1.1);                // prior on p(infection) when no increase is observed; anything goes
-  ProbInf4 ~ beta(29,1); //1.1, 1.1);                // prior on p(infection) when fourfold increase is observed; anything goes
+  ProbInf1 ~ beta(1,29);                             // prior on p(infection) when no increase is observed
+  ProbInf4 ~ beta(29,1);                             // prior on p(infection) when fourfold increase is observed
 
   /* likelihood contributions */
   target += watanabe_beta * normal_lpdf(Titer_Pre | Ind_Titer_Level, Sigma_Random); 

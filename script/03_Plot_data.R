@@ -21,7 +21,7 @@
 ################################################################################
 
 
-plot_points <- mumps_data_all |> 
+plot_points <- mumps_data |> 
   mutate(infected = (Post - Pre >= 2 & Post > log(300, base = 2)),
          toberemoved = Pre - Post >= 2) |> 
   ggplot(aes(x = Pre, y = Post, col = infected, alpha = toberemoved)) +
